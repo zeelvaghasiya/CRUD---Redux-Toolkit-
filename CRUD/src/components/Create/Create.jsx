@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { createUser } from "../../features/userDetailSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
 
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const getUserData = (e) => {
         setUser({...user, [e.target.name] : [e.target.value]})
@@ -17,6 +19,7 @@ export default function Create() {
         e.preventDefault();
         console.log("users...", user);
         dispatch(createUser(user));
+        navigate("/read")
       };
 
   return (
