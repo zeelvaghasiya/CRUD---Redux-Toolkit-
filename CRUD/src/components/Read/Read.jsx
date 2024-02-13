@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { showData } from "../../features/userDetailSlice.js";
+import { showData, deleteUser } from "../../features/userDetailSlice.js";
 import { CustomModel } from "../customModel/customModel.jsx";
 
 export function Read() {
@@ -15,6 +15,11 @@ export function Read() {
     console.log("IN Read");
     dispatch(showData());
   }, []);
+
+  if(loading)
+  {
+    <h1 className="text-center">Loading ...</h1>
+  }
 
   return (
     <>
@@ -46,7 +51,7 @@ export function Read() {
                 <button className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
                   Edit
                 </button>
-                <button className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
+                <button className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900" onClick={() => dispatch(deleteUser(user.id))}>
                   Delete
                 </button>
               </div>
